@@ -1,11 +1,10 @@
 <?php
 /**
  * Developer: Page Carbajal (https://github.com/Page-Carbajal)
- * Description: Use this class to configure basic settings of your plugin.
- * Date: 10/13/15, 11:50 AM
+ * Date: October 20 2015
  */
 
-// TODO: Change this namespace
+
 namespace EnhancePerformance;
 
 
