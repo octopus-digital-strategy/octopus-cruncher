@@ -8,13 +8,17 @@
 namespace EnhancePerformance;
 
 
+use EnhancePerformace\OptionsPage;
 
 class Setup
 {
-
     public function __construct()
     {
-        $this->registerStylesAndScripts();
+        $this->registerStylesAndScripts()->registerTextDomain();
+        $optionsPage = new OptionsPage();
+        $optionsPage->pluginPage()->setMenuTitle(__('Performance Enhancement', 'octopus'));
+
+
     }
 
     public function registerStylesAndScripts()
