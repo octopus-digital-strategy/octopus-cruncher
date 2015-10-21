@@ -13,5 +13,5 @@ var files =[
     path + 'themes/untitled-child/zn_script_child.js'
 ];
 
-console.log('Bundle: ', Files.minify(files) );
+console.log('Bundle: ', Files.minify(files, './dist/demo.min.js') );
 
