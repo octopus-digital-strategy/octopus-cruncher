@@ -21,8 +21,8 @@ class MinifyFiles
             }
             // TODO: notify Done!
         });
-        console.log('Done Baby!');
-        //return bundle;
+        //console.log('Done Baby!');
+        return 'Done baby!';
     }
 
 }

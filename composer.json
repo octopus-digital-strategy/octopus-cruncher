@@ -3,5 +3,15 @@
         "psr-4":{
             "EnhancePerformance\\": "src/"
         }
-    }
+    },
+    "require": {
+        "mustache/mustache": "^2.9",
+        "page-carbajal/wpexpress": "dev-master"
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/Page-Carbajal/WPExpress.git"
+        }
+    ]
 }

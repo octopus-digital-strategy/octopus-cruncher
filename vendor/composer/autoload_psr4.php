@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WPExpress\\' => array($vendorDir . '/page-carbajal/wpexpress/source'),
     'EnhancePerformance\\' => array($baseDir . '/src'),
 );
