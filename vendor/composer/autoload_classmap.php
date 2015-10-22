@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'EnhancePerformance\\OptionsPage' => $baseDir . '/src/OptionsPage.php',
     'EnhancePerformance\\Setup' => $baseDir . '/src/Setup.class.php',
     'Mustache_Autoloader' => $vendorDir . '/mustache/mustache/src/Mustache/Autoloader.php',
     'Mustache_Cache' => $vendorDir . '/mustache/mustache/src/Mustache/Cache.php',
@@ -39,7 +40,11 @@ return array(
     'Mustache_Template' => $vendorDir . '/mustache/mustache/src/Mustache/Template.php',
     'Mustache_Tokenizer' => $vendorDir . '/mustache/mustache/src/Mustache/Tokenizer.php',
     'WPExpress\\Abstractions\\Model\\BaseModel' => $vendorDir . '/page-carbajal/wpexpress/source/Abstractions/Model/BaseModel.class.php',
+    'WPExpress\\Abstractions\\SettingsPage' => $vendorDir . '/page-carbajal/wpexpress/source/Abstractions/SettingsPage.class.php',
     'WPExpress\\Interfaces\\Model\\iBaseModel' => $vendorDir . '/page-carbajal/wpexpress/source/Interfaces/Model/iBaseModel.class.php',
     'WPExpress\\Model\\Post' => $vendorDir . '/page-carbajal/wpexpress/source/Model/Post.class.php',
     'WPExpress\\Query' => $vendorDir . '/page-carbajal/wpexpress/source/Query.class.php',
+    'WPExpress\\UI' => $vendorDir . '/page-carbajal/wpexpress/source/UI.class.php',
+    'WPExpress\\UI\\HTML\\Tags' => $vendorDir . '/page-carbajal/wpexpress/source/UI/HTML/Tags.class.php',
+    'WPExpress\\UI\\RenderEngine' => $vendorDir . '/page-carbajal/wpexpress/source/UI/RenderEngine.class.php',
 );
