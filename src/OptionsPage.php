@@ -1,14 +1,13 @@
 <?php
 /**
  * Developer: Page Carbajal (https://github.com/Page-Carbajal)
- * Date: Octubre 21 2015, 1:42 PM
+ * Date: October 21 2015, 1:42 PM
  */
 
 namespace EnhancePerformance;
 
 
 use WPExpress\Abstractions\SettingsPage;
-use WPExpress\UI\HTML\Tags;
 
 
 class OptionsPage extends SettingsPage
@@ -21,7 +20,6 @@ class OptionsPage extends SettingsPage
         // Invoke the paren constructor
         parent::__construct( 'Performance Enhancements', 'manage_options' );
 
-        $this->getNodeInformation();
         // plugin_basename(__FILE__)
         $this->setCustomTemplatePath( plugin_dir_path(__FILE__) . "../resources/templates" );
 
@@ -39,13 +37,6 @@ class OptionsPage extends SettingsPage
     }
 
 
-    private function getNodeInformation()
-    {
-        $this->nodePath = exec('node -v');
-
-    }
-
-
     private function registerCustomFields()
     {
         // Custom Bundle Name
@@ -54,8 +45,7 @@ class OptionsPage extends SettingsPage
             __( 'Bundle Name', 'octopus' ),
             'text', 'node-settings',
             array(
-                'disabled' => true,
-                'value' => 'css-bundle.min.css',
+                'placeholder' => 'css-bundle.min.css',
             ) );
 
 
@@ -69,12 +59,14 @@ class OptionsPage extends SettingsPage
 
         $WPStyles = new \WP_Styles();
 
-        $styles = $this->getRegisteredStyles();
+        $registeredStyles = get_option( "{$this->fieldPrefix}registeredStyles", array() );
 
-        foreach( $styles as $key => $style ){
-            wp_dequeue_style( $key );
-            $this->addMetaField( $key, $key, 'checkbox', 'styles' );
-        }
+        $this->addMetaFieldsArray('styles', $registeredStyles, 'checkbox', 'styles');
+
+//        foreach( $styles as $key => $style ){
+////            wp_dequeue_style( $key );
+//            $this->addMetaField( "styles", $key, 'checkbox', 'styles', array('value' => $key, 'array' => true) );
+//        }
 
 
         return $this;
@@ -83,12 +75,17 @@ class OptionsPage extends SettingsPage
     public function persistRegisteredStyles()
     {
         global $wp_styles;
-        update_option( "{$this->settingsPrefix}registeredStyles", $wp_styles->registered );
+        $styles = array();
+        foreach( $wp_styles->registered as $key => $dependency ){
+            $styles[$key] = $key;
+        }
+        update_option( "{$this->fieldPrefix}registeredStyles", $styles );
+
     }
 
     public function getRegisteredStyles()
     {
-        return get_option( "{$this->settingsPrefix}registeredStyles", array() );
+        return get_option( "{$this->fieldPrefix}registeredStyles", array() );
     }
 
     public function getCSSBundlePath()

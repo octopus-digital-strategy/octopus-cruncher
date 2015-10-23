@@ -14,9 +14,8 @@ class Setup
 {
     public function __construct()
     {
-        $optionsPage = new OptionsPage();
-
         $this->registerStylesAndScripts()->registerTextDomain();
+        new OptionsPage();
     }
 
     public function registerStylesAndScripts()
