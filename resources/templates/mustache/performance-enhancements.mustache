@@ -1,17 +1,60 @@
+<style type="text/css">
+    .registeredStyles{
+        display: block;
+        clear: both;
+        list-style: none;
+        padding: 20px 0;
+        margin: 10px 0;
+        border: 1px solid #DDD;
+        border-left: 0;
+        border-right: 0;
+        width: 80%;
+    }
+    .registeredStyles li{
+        display: inline-block;
+        width: 25%;
+        height: 20px;
+        overflow: hidden;
+    }
+</style>
+
 <div class="wrapper">
     <h1>{{pageTitle}}</h1>
+    <form method="post">
+        {{# fields}}
+            <p>
+                <label for="{{properties.id}}">{{properties.labelText}}</label> <br />
+                {{{ html }}}
+            </p>
+        {{/fields}}
 
-    {{# fields}}
+        <h2>Registered Styles</h2>
         <p>
-            <label for="{{properties.id}}">{{properties.labelText}}</label> <br />
-            {{{ html }}}
+            <a id="toggleSelection" href="#">Select All</a>
         </p>
-    {{/fields}}
-
-    <ul class="styles">
-        {{# styles}}
-            <li>{{{ html }}} <label for="{{properties.id}}">{{properties.labelText}}</label> </li>
-        {{/styles}}
-    </ul>
-
+        <ul class="registeredStyles">
+            {{# styles}}
+                <li>{{{ html }}} <label for="{{properties.id}}">{{properties.labelText}}</label> </li>
+            {{/styles}}
+        </ul>
+    </form>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('#toggleSelection').click(function(e){
+            e.prevenDefault = true;
+
+            var check = (jQuery(this).text() == 'Select All');
+
+            if(check){
+                jQuery('ul.registeredStyles input[type=checkbox]').attr('checked', 'checked');
+                jQuery(this).text('Deselect All');
+            } else {
+                jQuery('ul.registeredStyles input[type=checkbox]').removeAttr('checked');
+                jQuery(this).text('Select All');
+            }
+
+        });
+    });
+</script>

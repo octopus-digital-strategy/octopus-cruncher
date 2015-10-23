@@ -14,6 +14,8 @@ use WPExpress\UI\HTML\Tags;
 class OptionsPage extends SettingsPage
 {
 
+    private $bundlePath;
+
     public function __construct()
     {
         // Invoke the paren constructor
@@ -29,6 +31,11 @@ class OptionsPage extends SettingsPage
 
         // Customize context
         add_filter( 'wpExpressSettingsPageContext', array($this, 'customizeContext') );
+
+        // TODO: composer require natxet/cssmin - https://code.google.com/p/cssmin/
+        // TODO: Persist the bundle
+        // TODO: Add button generateBundle
+
     }
 
 
@@ -66,7 +73,7 @@ class OptionsPage extends SettingsPage
 
         foreach( $styles as $key => $style ){
             wp_dequeue_style( $key );
-            $this->addMetaField( $key, "Style {$key}", 'checkbox', 'styles' );
+            $this->addMetaField( $key, $key, 'checkbox', 'styles' );
         }
 
 
