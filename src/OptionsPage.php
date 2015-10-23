@@ -40,7 +40,7 @@ class OptionsPage extends SettingsPage
     private function registerCustomFields()
     {
         // Custom Bundle Name
-        $this->addMetaField(
+        $this->registerMetaField(
             'nodePath',
             __( 'Bundle Name', 'octopus' ),
             'text', 'node-settings',
@@ -61,7 +61,7 @@ class OptionsPage extends SettingsPage
 
         $registeredStyles = get_option( "{$this->fieldPrefix}registeredStyles", array() );
 
-        $this->addMetaFieldsArray('styles', $registeredStyles, 'checkbox', 'styles');
+        $this->registerMetaFieldsArray('styles', $registeredStyles, 'checkbox', 'styles');
 
 //        foreach( $styles as $key => $style ){
 ////            wp_dequeue_style( $key );
