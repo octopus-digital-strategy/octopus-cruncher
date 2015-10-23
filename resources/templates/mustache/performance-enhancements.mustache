@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <h1>{{pageTitle}}</h1>
+
+    {{# fields}}
+        <p>
+            <label for="{{properties.id}}">{{properties.labelText}}</label> <br />
+            {{{ html }}}
+        </p>
+    {{/fields}}
+
+    <ul class="styles">
+        {{# styles}}
+            <li>{{{ html }}} <label for="{{properties.id}}">{{properties.labelText}}</label> </li>
+        {{/styles}}
+    </ul>
+
+</div>
