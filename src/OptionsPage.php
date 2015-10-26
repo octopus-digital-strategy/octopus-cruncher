@@ -66,14 +66,26 @@ class OptionsPage extends SettingsPage
 
     public function persistRegisteredStyles()
     {
+        global $wp_styles;
+
         $propertyName = "{$this->fieldPrefix}registeredStyles";
         $styles = get_option($propertyName);
+
         if( empty($styles) ){
             global $wp_styles;
             $styles = array();
             foreach( $wp_styles->registered as $key => $dependency ){
+                $source = ABSPATH;//get_home_path();
                 if( is_string( $dependency->src ) ){
-                    $styles[$key] = $key;
+                    if( strpos($dependency->src, $wp_styles->base_url) !== false ){
+                        $start = strlen($wp_styles->base_url);
+                        $source .= substr($dependency->src, $start, strlen($dependency->src) - $start );
+                    } else {
+                        $source .= $dependency->src;
+                    }
+                    if( file_exists( $source ) ){
+                        $styles[$key] = $source;
+                    }
                 }
             }
             update_option( $propertyName, $styles );
@@ -113,7 +125,9 @@ class OptionsPage extends SettingsPage
 
             if( isset( $field->properties['group'] ) && $field->properties['group'] == 'styles' ){
                 unset($context['fields'][$index]);
-                $context['styles'][] = $field;
+//                if( (strpos( $field->properties['value'], 'wp_' ) === false) && (strpos( $field->properties['value'], 'wp-' ) === false) ){
+                    $context['styles'][] = $field;
+//                }
             }
         }
 
@@ -148,22 +162,11 @@ class OptionsPage extends SettingsPage
         delete_option( "{$this->fieldPrefix}CSSBundle" );
         $cssBundle = '';
 
-        $styles = $currentOptions->getValue('styles');
-
-        foreach( $wp_styles->registered as $key => $dependency ){
-            $filePath = $wp_styles->base_url; //untrailingslashit( get_home_path() );
-            if( in_array( $key, $styles ) ){
-                if( is_string( $dependency->src ) ){
-                    if( strpos($dependency->src, $wp_styles->base_url) !== false ){
-                        $start = strlen($wp_styles->base_url);
-                        $filePath .= substr($dependency->src, $start, strlen($dependency->src) - $start );
-                    } else {
-                        $filePath .= $dependency->src;
-                    }
-                    if( file_exists( $filePath ) ){
-                        $cssBundle .= \CssMin::minify( file_get_contents( $filePath ) );
-                    }
-                }
+        $registeredStyles = get_option("{$this->fieldPrefix}registeredStyles");
+        $selectedStyles = $currentOptions->getValue('styles');
+        foreach( $registeredStyles as $key => $source ){
+            if( in_array( $key, $selectedStyles ) ){
+                $cssBundle .= \CssMin::minify( file_get_contents($source) );
             }
         }
 
