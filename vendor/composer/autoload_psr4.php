@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WPExpress\\' => array($vendorDir . '/page-carbajal/wpexpress/source'),
-    'OctopusCrucher\\' => array($baseDir . '/src'),
+    'OctopusCruncher\\' => array($baseDir . '/src'),
 );

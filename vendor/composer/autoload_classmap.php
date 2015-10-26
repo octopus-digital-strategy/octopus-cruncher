@@ -95,6 +95,8 @@ return array(
     'Mustache_Parser' => $vendorDir . '/mustache/mustache/src/Mustache/Parser.php',
     'Mustache_Template' => $vendorDir . '/mustache/mustache/src/Mustache/Template.php',
     'Mustache_Tokenizer' => $vendorDir . '/mustache/mustache/src/Mustache/Tokenizer.php',
+    'OctopusCruncher\\OptionsPage' => $baseDir . '/src/OptionsPage.php',
+    'OctopusCruncher\\Setup' => $baseDir . '/src/Setup.class.php',
     'WPExpress\\Abstractions\\Model\\BaseModel' => $vendorDir . '/page-carbajal/wpexpress/source/Abstractions/Model/BaseModel.class.php',
     'WPExpress\\Abstractions\\SettingsPage' => $vendorDir . '/page-carbajal/wpexpress/source/Abstractions/SettingsPage.class.php',
     'WPExpress\\Interfaces\\Model\\iBaseModel' => $vendorDir . '/page-carbajal/wpexpress/source/Interfaces/Model/iBaseModel.class.php',

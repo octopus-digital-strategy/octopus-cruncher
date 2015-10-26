@@ -21,8 +21,8 @@ class Setup
     public function registerStylesAndScripts()
     {
         // Load scripts for the front end
-        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
-        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
+//        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
+//        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
         return $this;
     }
 

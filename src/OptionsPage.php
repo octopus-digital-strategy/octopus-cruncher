@@ -18,18 +18,13 @@ class OptionsPage extends SettingsPage
     public function __construct()
     {
         // Invoke the paren constructor
-        parent::__construct( 'Performance Enhancements', 'manage_options' );
-
+        parent::__construct( 'Octopus Cruncher', 'manage_options' );
         // plugin_basename(__FILE__)
         $this->setCustomTemplatePath( plugin_dir_path(__FILE__) . "../resources/templates" );
-
-        $description = __('This plugin requires node installed on the server.', 'octopus');
-
+        $description = __('CSS Cruncher', 'octopus');
         $this->registerPage()->setPageDescription($description)->registerCustomFields();
-
         // Customize context
         add_filter( 'wpExpressSettingsPageContext', array($this, 'customizeContext') );
-
         add_action( 'wpExpressSettingsPageAfterSave', array($this, 'generateCSSBundle' ), 2 );
     }
 
