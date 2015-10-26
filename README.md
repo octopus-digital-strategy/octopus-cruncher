@@ -5,10 +5,11 @@ A WordPress plugin to compress and minify all javascript with UglifyJS and other
 ##How to start?
 
 1. Install and activate the plugin
-2. Visit your homepage
-3. Open the option Settings/Octopus Cruncher
-4. Select the styles to be crunched
-    - Identify the styles with this [JS Fiddle](http://jsfiddle.net/pagecarbajal/tm00avv2/)
+2. Run composer update commands if necessary
+3. Visit your homepage
+4. Open the option Settings/Octopus Cruncher
+    - Identify the running this styles on your browser [JS Fiddle](http://jsfiddle.net/pagecarbajal/tm00avv2/)
+5. Select the styles to be crunched
 
 ###Version 0.1
 
