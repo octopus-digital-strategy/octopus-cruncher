@@ -5,10 +5,10 @@
  */
 
 
-namespace EnhancePerformance;
+namespace OctopusCruncher;
 
 
-use EnhancePerformance\OptionsPage;
+use OctopusCruncher\OptionsPage;
 
 class Setup
 {

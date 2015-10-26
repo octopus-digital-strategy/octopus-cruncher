@@ -64,8 +64,6 @@ return array(
     'CssVariablesMinifierFilter' => $vendorDir . '/natxet/CssMin/src/CssMin.php',
     'CssVariablesMinifierPlugin' => $vendorDir . '/natxet/CssMin/src/CssMin.php',
     'CssWhitesmithsFormatter' => $vendorDir . '/natxet/CssMin/src/CssMin.php',
-    'EnhancePerformance\\OptionsPage' => $baseDir . '/src/OptionsPage.php',
-    'EnhancePerformance\\Setup' => $baseDir . '/src/Setup.class.php',
     'Mustache_Autoloader' => $vendorDir . '/mustache/mustache/src/Mustache/Autoloader.php',
     'Mustache_Cache' => $vendorDir . '/mustache/mustache/src/Mustache/Cache.php',
     'Mustache_Cache_AbstractCache' => $vendorDir . '/mustache/mustache/src/Mustache/Cache/AbstractCache.php',

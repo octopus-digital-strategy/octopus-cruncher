@@ -48,33 +48,6 @@
         ]
     },
     {
-        "name": "page-carbajal/wpexpress",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Page-Carbajal/WPExpress.git",
-            "reference": "525e7aeb55a8d0bf3157c619d880566835cf88a4"
-        },
-        "time": "2015-10-21 17:02:21",
-        "type": "lybrary",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "WPExpress\\": "source/"
-            }
-        },
-        "license": [
-            "GNU-3.0"
-        ],
-        "authors": [
-            {
-                "name": "Page Carbajal",
-                "homepage": "http://pagecarbajal.com"
-            }
-        ]
-    },
-    {
         "name": "natxet/CssMin",
         "version": "v3.0.4",
         "version_normalized": "3.0.4.0",
@@ -122,5 +95,37 @@
             "css",
             "minify"
         ]
+    },
+    {
+        "name": "page-carbajal/wpexpress",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Page-Carbajal/WPExpress.git",
+            "reference": "80d2bd5397725b97337bf47bab228618f63fdfc8"
+        },
+        "require": {
+            "mustache/mustache": "^2.9",
+            "php": ">=5.3"
+        },
+        "time": "2015-10-26 21:44:31",
+        "type": "lybrary",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "WPExpress\\": "source/"
+            }
+        },
+        "license": [
+            "GNU-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Page Carbajal",
+                "homepage": "http://pagecarbajal.com"
+            }
+        ],
+        "homepage": "https://github.com/Page-Carbajal/WPExpress"
     }
 ]

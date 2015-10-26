@@ -4,7 +4,7 @@
  * Date: October 21 2015, 1:42 PM
  */
 
-namespace EnhancePerformance;
+namespace OctopusCruncher;
 
 
 use WPExpress\Abstractions\SettingsPage;
