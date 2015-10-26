@@ -6,7 +6,8 @@
     },
     "require": {
         "mustache/mustache": "^2.9",
-        "page-carbajal/wpexpress": "dev-master"
+        "page-carbajal/wpexpress": "dev-master",
+        "natxet/CssMin": "^3.0"
     },
     "repositories":[
         {

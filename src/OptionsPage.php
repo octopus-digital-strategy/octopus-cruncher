@@ -30,10 +30,7 @@ class OptionsPage extends SettingsPage
         // Customize context
         add_filter( 'wpExpressSettingsPageContext', array($this, 'customizeContext') );
 
-        // TODO: composer require natxet/cssmin - https://code.google.com/p/cssmin/
-        // TODO: Persist the bundle
-        // TODO: Add button generateBundle
-
+        add_action( 'wpExpressSettingsPageAfterSave', array($this, 'generateCSSBundle' ), 2 );
     }
 
 
@@ -41,46 +38,46 @@ class OptionsPage extends SettingsPage
     {
         // Custom Bundle Name
         $this->registerMetaField(
-            'nodePath',
-            __( 'Bundle Name', 'octopus' ),
+            'CSSBundle',
+            __( 'Bundle Path', 'octopus' ),
             'text', 'node-settings',
             array(
-                'placeholder' => 'css-bundle.min.css',
+                'readonly' => true,
+                'style' => 'min-width: 600px;',
             ) );
 
-
         // Persist all the registerd styles
-        // TODO: Run only once or on demand
-        add_action('wp_head', array($this, 'persistRegisteredStyles'), 99);
-        // Enqueue CSS Bundle
-        if( $this->getCSSBundlePath() != false ){
-            add_action( 'wp_head', array($this, 'enqueueCSSBundle'), 1 );
+        if(!is_admin()){
+            add_action('wp_head', array($this, 'persistRegisteredStyles'), 99);
+            // Enqueue CSS Bundle
+            if( $this->getCSSBundlePath() != false ){
+                add_action( 'wp_head', array($this, 'enqueueCSSBundle'), 1 );
+            }
         }
 
-        $WPStyles = new \WP_Styles();
+//        $WPStyles = new \WP_Styles();
+//
 
-        $registeredStyles = get_option( "{$this->fieldPrefix}registeredStyles", array() );
-
-        $this->registerMetaFieldsArray('styles', $registeredStyles, 'checkbox', 'styles');
-
-//        foreach( $styles as $key => $style ){
-////            wp_dequeue_style( $key );
-//            $this->addMetaField( "styles", $key, 'checkbox', 'styles', array('value' => $key, 'array' => true) );
-//        }
-
+        $styles = get_option("{$this->fieldPrefix}registeredStyles");
+        $this->registerMetaFieldsArray('styles', $styles, 'checkbox', 'styles');
 
         return $this;
     }
 
     public function persistRegisteredStyles()
     {
-        global $wp_styles;
-        $styles = array();
-        foreach( $wp_styles->registered as $key => $dependency ){
-            $styles[$key] = $key;
+        $propertyName = "{$this->fieldPrefix}registeredStyles";
+        $styles = get_option($propertyName);
+        if( empty($styles) ){
+            global $wp_styles;
+            $styles = array();
+            foreach( $wp_styles->registered as $key => $dependency ){
+                if( is_string( $dependency->src ) ){
+                    $styles[$key] = $key;
+                }
+            }
+            update_option( $propertyName, $styles );
         }
-        update_option( "{$this->fieldPrefix}registeredStyles", $styles );
-
     }
 
     public function getRegisteredStyles()
@@ -90,8 +87,7 @@ class OptionsPage extends SettingsPage
 
     public function getCSSBundlePath()
     {
-        $bundlePath = false;
-        // TODO: get path to Bundle
+        $bundlePath = get_option( "{$this->fieldPrefix}CSSBundle", false );;
         return $bundlePath;
     }
 
@@ -99,9 +95,14 @@ class OptionsPage extends SettingsPage
     {
         global $wp_styles;
 
-        // TODO: getCompressedStyles and dequeue them
-        // TODO: enqueue CSS Bundle
+        $styles = $this->getValue('styles');
+        foreach( $styles as $style ){
+            wp_dequeue_style( $style );
+        }
 
+        $bundleURL = get_option( "{$this->fieldPrefix}CSSBundle" );
+
+        wp_enqueue_style( 'octopus-cruncher-css', $bundleURL );
     }
 
     public function customizeContext($context)
@@ -116,7 +117,60 @@ class OptionsPage extends SettingsPage
             }
         }
 
+        if(!empty( $this->getValue('styles') )){
+            $context['styles-bundle'] = true;
+        }
+
         return $context;
+    }
+
+    private function saveFile($fileName, $fileContents)
+    {
+        $bytes = false;
+        $uploadsPath = wp_upload_dir();
+        $filePath = trailingslashit($uploadsPath['basedir']) . "cruncher/$fileName.min.css";
+
+        if( wp_mkdir_p( trailingslashit($uploadsPath['basedir']).'cruncher' ) ){
+            if( $bytes = file_put_contents( $filePath, $fileContents ) !== false ){
+                $bundleURL = trailingslashit( content_url( 'uploads/cruncher' ) ) . "{$fileName}.min.css";
+                update_option("{$this->fieldPrefix}CSSBundle", $bundleURL);
+            }
+
+        }
+        return ( $bytes !== false );
+    }
+
+    public function generateCSSBundle($currentOptions, $postObject)
+    {
+        global $wp_styles;
+
+        // Destroy the bundle
+        delete_option( "{$this->fieldPrefix}CSSBundle" );
+        $cssBundle = '';
+
+        $styles = $currentOptions->getValue('styles');
+
+        foreach( $wp_styles->registered as $key => $dependency ){
+            $filePath = $wp_styles->base_url; //untrailingslashit( get_home_path() );
+            if( in_array( $key, $styles ) ){
+                if( is_string( $dependency->src ) ){
+                    if( strpos($dependency->src, $wp_styles->base_url) !== false ){
+                        $start = strlen($wp_styles->base_url);
+                        $filePath .= substr($dependency->src, $start, strlen($dependency->src) - $start );
+                    } else {
+                        $filePath .= $dependency->src;
+                    }
+                    if( file_exists( $filePath ) ){
+                        $cssBundle .= \CssMin::minify( file_get_contents( $filePath ) );
+                    }
+                }
+            }
+        }
+
+        if( !empty($cssBundle) ){
+            $this->saveFile('cruncher-css-bundle', $cssBundle);
+        }
+
     }
 
 }
