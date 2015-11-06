@@ -47,7 +47,7 @@ abstract class Mustache_Template
      *
      * @param mixed $context Array or object rendering context (default: array())
      *
-     * @return string Rendered templates
+     * @return string Rendered template
      */
     public function __invoke($context = array())
     {
@@ -55,11 +55,11 @@ abstract class Mustache_Template
     }
 
     /**
-     * Render this templates given the rendering context.
+     * Render this template given the rendering context.
      *
      * @param mixed $context Array or object rendering context (default: array())
      *
-     * @return string Rendered templates
+     * @return string Rendered template
      */
     public function render($context = array())
     {
@@ -78,7 +78,7 @@ abstract class Mustache_Template
      * @param Mustache_Context $context
      * @param string           $indent  (default: '')
      *
-     * @return string Rendered templates
+     * @return string Rendered template
      */
     abstract public function renderInternal(Mustache_Context $context, $indent = '');
 

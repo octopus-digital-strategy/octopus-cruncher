@@ -11,6 +11,10 @@ A WordPress plugin to compress and minify all javascript with UglifyJS and other
     - Identify the running this styles on your browser [JS Fiddle](http://jsfiddle.net/pagecarbajal/tm00avv2/)
 5. Select the styles to be crunched
 
+###Version 0.2
+
+* Fixed composer error
+
 ###Version 0.1
 
 * Commented the register styles 

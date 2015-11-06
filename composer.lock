@@ -106,13 +106,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Page-Carbajal/WPExpress.git",
-                "reference": "80d2bd5397725b97337bf47bab228618f63fdfc8"
+                "reference": "9eb7ef90f414b92ba6e01a586ed96fdb3e9a5aa3"
             },
             "require": {
                 "mustache/mustache": "^2.9",
                 "php": ">=5.3"
             },
-            "type": "lybrary",
+            "type": "library",
             "autoload": {
                 "psr-4": {
                     "WPExpress\\": "source/"
@@ -128,7 +128,7 @@
                 }
             ],
             "homepage": "https://github.com/Page-Carbajal/WPExpress",
-            "time": "2015-10-26 21:44:31"
+            "time": "2015-11-05 23:50:05"
         }
     ],
     "packages-dev": [],

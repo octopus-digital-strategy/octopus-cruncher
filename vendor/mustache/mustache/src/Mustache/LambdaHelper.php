@@ -34,11 +34,11 @@ class Mustache_LambdaHelper
     }
 
     /**
-     * Render a string as a Mustache templates with the current rendering context.
+     * Render a string as a Mustache template with the current rendering context.
      *
      * @param string $string
      *
-     * @return string Rendered templates.
+     * @return string Rendered template.
      */
     public function render($string)
     {
