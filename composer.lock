@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "29f9228f353a228e85345d1366c48b9a",
-    "content-hash": "eb2ca2e5c7a6613d246134c152bb99ac",
+    "hash": "ecec6ac9174778f900c7ff4fd277a4b8",
+    "content-hash": "e324623a73a105bcd3e9ba337f258495",
     "packages": [
         {
             "name": "mustache/mustache",
@@ -102,11 +102,17 @@
         },
         {
             "name": "page-carbajal/wpexpress",
-            "version": "dev-master",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Page-Carbajal/WPExpress.git",
-                "reference": "9eb7ef90f414b92ba6e01a586ed96fdb3e9a5aa3"
+                "reference": "47ff41adf6f48cb0c30c1776c1ddb33091cf9278"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Page-Carbajal/WPExpress/zipball/47ff41adf6f48cb0c30c1776c1ddb33091cf9278",
+                "reference": "47ff41adf6f48cb0c30c1776c1ddb33091cf9278",
+                "shasum": ""
             },
             "require": {
                 "mustache/mustache": "^2.9",
@@ -118,6 +124,7 @@
                     "WPExpress\\": "source/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GNU-3.0"
             ],
@@ -128,15 +135,13 @@
                 }
             ],
             "homepage": "https://github.com/Page-Carbajal/WPExpress",
-            "time": "2015-11-05 23:50:05"
+            "time": "2015-11-03 16:23:24"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "page-carbajal/wpexpress": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

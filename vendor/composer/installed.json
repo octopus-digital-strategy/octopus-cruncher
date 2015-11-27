@@ -48,38 +48,6 @@
         ]
     },
     {
-        "name": "page-carbajal/wpexpress",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Page-Carbajal/WPExpress.git",
-            "reference": "9eb7ef90f414b92ba6e01a586ed96fdb3e9a5aa3"
-        },
-        "require": {
-            "mustache/mustache": "^2.9",
-            "php": ">=5.3"
-        },
-        "time": "2015-11-05 23:50:05",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "WPExpress\\": "source/"
-            }
-        },
-        "license": [
-            "GNU-3.0"
-        ],
-        "authors": [
-            {
-                "name": "Page Carbajal",
-                "homepage": "http://pagecarbajal.com"
-            }
-        ],
-        "homepage": "https://github.com/Page-Carbajal/WPExpress"
-    },
-    {
         "name": "natxet/CssMin",
         "version": "v3.0.4",
         "version_normalized": "3.0.4.0",
@@ -127,5 +95,44 @@
             "css",
             "minify"
         ]
+    },
+    {
+        "name": "page-carbajal/wpexpress",
+        "version": "0.3.2",
+        "version_normalized": "0.3.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Page-Carbajal/WPExpress.git",
+            "reference": "47ff41adf6f48cb0c30c1776c1ddb33091cf9278"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Page-Carbajal/WPExpress/zipball/47ff41adf6f48cb0c30c1776c1ddb33091cf9278",
+            "reference": "47ff41adf6f48cb0c30c1776c1ddb33091cf9278",
+            "shasum": ""
+        },
+        "require": {
+            "mustache/mustache": "^2.9",
+            "php": ">=5.3"
+        },
+        "time": "2015-11-03 16:23:24",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "WPExpress\\": "source/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GNU-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Page Carbajal",
+                "homepage": "http://pagecarbajal.com"
+            }
+        ],
+        "homepage": "https://github.com/Page-Carbajal/WPExpress"
     }
 ]

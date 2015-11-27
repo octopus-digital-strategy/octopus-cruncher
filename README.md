@@ -1,6 +1,6 @@
 #Octopus Cruncher
 
-A WordPress plugin to compress and minify all javascript with UglifyJS and other node utilities. :D
+A WordPress plugin to compress and minify all CSS into a single bundle.
 
 ##How to start?
 
@@ -11,8 +11,14 @@ A WordPress plugin to compress and minify all javascript with UglifyJS and other
     - Identify the running this styles on your browser [JS Fiddle](http://jsfiddle.net/pagecarbajal/tm00avv2/)
 5. Select the styles to be crunched
 
+
+##Change Log
+
 ###Version 0.2
 
+* Moved the wpexpress dependency from repository to package
+* Added composer.lock to .gitignore
+* Removed composer.lock from repo
 * Fixed composer error
 
 ###Version 0.1

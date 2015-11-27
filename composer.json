@@ -6,13 +6,7 @@
     },
     "require": {
         "mustache/mustache": "^2.9",
-        "page-carbajal/wpexpress": "dev-master",
+        "page-carbajal/wpexpress": "^0.3.2",
         "natxet/CssMin": "^3.0"
-    },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "https://github.com/Page-Carbajal/WPExpress.git"
-        }
-    ]
+    }
 }
