@@ -1,6 +1,6 @@
 #Octopus Cruncher
 
-A WordPress plugin to compress and minify all CSS into a single bundle.
+A WordPress plugin to compress all CSS into a single bundle.
 
 ##How to start?
 
@@ -16,6 +16,7 @@ A WordPress plugin to compress and minify all CSS into a single bundle.
 
 ###Version 0.2
 
+* Added the PROJECT.md file with the User Stories for this plugin
 * Moved the wpexpress dependency from repository to package
 * Added composer.lock to .gitignore
 * Removed composer.lock from repo
