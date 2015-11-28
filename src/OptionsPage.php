@@ -126,6 +126,15 @@ class OptionsPage extends SettingsPage
             }
         }
 
+        if( count( $context['styles'] ) == 0 ){
+            $context['welcome'] = array(
+                'title' => __( 'Almost Ready!', 'octopus' ),
+                'message' => __( '<p>Please click the button below. This will open your homepage to load the styles available on WordPress to the list.</p>', 'octopus' ),
+                'homeURL' => home_url(),
+                'homeLink' => __( 'Open Homepage', 'octopus' ),
+            );
+        }
+
         if(!empty( $this->getValue('styles') )){
             $context['styles-bundle'] = true;
         }

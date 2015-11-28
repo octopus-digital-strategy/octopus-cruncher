@@ -10,6 +10,7 @@ namespace OctopusCruncher;
 
 use OctopusCruncher\OptionsPage;
 
+
 class Setup
 {
     public function __construct()
@@ -21,8 +22,10 @@ class Setup
     public function registerStylesAndScripts()
     {
         // Load scripts for the front end
-//        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
-//        add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
+        if( is_admin() ){
+            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
+            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
+        }
         return $this;
     }
 
@@ -42,27 +45,21 @@ class Setup
     // Static methods
     public static function enqueueStyles()
     {
-        if( is_admin() ){
-            if( $stylePath = self::getResourceURL( 'admin-styles.css', 'css' ) ){
-                wp_enqueue_style( 'your-plugin-name-admin-styles', $stylePath );
-            }
+        // Bootstrap
+        if( $bootstrap = self::getResourceURL( 'bootstrap.min.css', 'bower_components/bootstrap/dist/css' ) ){
+            wp_enqueue_style( 'bootstrap-css', $bootstrap );
         }
-
-        if( $stylePath = self::getResourceURL( 'front-end.css', 'css' ) ){
-            wp_enqueue_style( 'your-plugin-name-front-end-styles', $stylePath );
+        // Bootstrap Theme
+        if( $bootstrapTheme = self::getResourceURL( 'bootstrap-theme.min.css', 'bower_components/bootstrap/dist/css' ) ){
+            wp_enqueue_style( 'bootstrap-theme-css', $bootstrapTheme );
         }
     }
 
     public static function enqueueScripts()
     {
-        if( is_admin() ){
-            if( $scriptPath = self::getResourceURL( 'admin-script.js', 'javascript' ) ){
-                wp_enqueue_script( 'your-plugin-name-admin-script', $scriptPath, array( 'jquery' ) );
-            }
-        }
-
-        if( $scriptPath = self::getResourceURL( 'front-end.js', 'javascript' ) ){
-            wp_enqueue_script( 'your-plugin-name-front-end-script', $scriptPath, array( 'jquery' ) );
+        // Bootstrap
+        if( $bootstrap = self::getResourceURL( 'bootstrap.min.js', 'bower_components/bootstrap/dist/js' ) ){
+            wp_enqueue_script( 'bootstrap-js', $bootstrap, array( 'jquery' ) );
         }
     }
 

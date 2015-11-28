@@ -18,32 +18,58 @@
     }
 </style>
 
-<div class="wrapper">
-    <h1>{{pageTitle}}</h1>
-    <form method="post">
-        {{# fields}}
-            <p>
-                <label for="{{properties.id}}">{{properties.labelText}}</label> <br />
-                {{{ html }}}
-            </p>
-        {{/fields}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{pageTitle}}</h1>
+            <form method="post">
+                {{# fields}}
+                    <p>
+                        <label for="{{properties.id}}">{{properties.labelText}}</label> <br />
+                        {{{ html }}}
+                    </p>
+                {{/fields}}
 
-        <h2>Registered Styles</h2>
-        <p>
-            <a id="toggleSelection" href="#">Select All</a>
-        </p>
-        <ul class="registeredStyles">
-            {{# styles}}
-                <li>{{{ html }}} <label for="{{properties.id}}">{{properties.labelText}}</label> </li>
-            {{/styles}}
-            {{^ styles}}
-                <h4>Open your website home page to load styles</h4>
-            {{/styles}}
-        </ul>
-        <p>
-            <input type="submit" value="Save" class="button button-primary"/>
-        </p>
-    </form>
+                <h2>Registered Styles</h2>
+                <p>
+                    <a id="toggleSelection" href="#">Select All</a>
+                </p>
+                <ul class="registeredStyles">
+                    {{# styles}}
+                        <li>{{{ html }}} <label for="{{properties.id}}">{{properties.labelText}}</label> </li>
+                    {{/styles}}
+                </ul>
+                <p>
+                    <input type="submit" value="Save" class="button button-primary"/>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <!--Display welcome message if no styles are loaded -->
+            {{#welcome}}
+                <div class="jumbotron">
+                    <h1>{{title}}</h1>
+                    <div class="content">{{{message}}}</div>
+                    <p><a class="btn btn-primary btn-lg" href="{{homeURL}}" target="_blank">{{homeLink}}</a></p>
+                </div>
+            {{/welcome}}
+            <!-- Display the Styles here -->
+            {{^welcome}}
+                <h2>Styles</h2>
+                <ul class="list-group row" id="sortableStyles">
+                    {{#styles}}
+                        <li class="list-group-item col-md-4 draggable">{{properties.labelText}}</li>
+                    {{/styles}}
+                </ul>
+            {{/welcome}}
+
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -61,7 +87,25 @@
                 jQuery(this).text('Select All');
             }
 
+            activateSortableList();
+
         });
 
     });
+
+    function activateSortableList()
+    {
+        jQuery(function() {
+            jQuery( "#sortableStyles" ).sortable({
+                revert: true
+            });
+            jQuery( "li.draggable" ).draggable({
+                connectToSortable: "#sortableStyles",
+                helper: "clone",
+                revert: "invalid"
+            });
+            jQuery( "ul, li" ).disableSelection();
+        });
+    }
+
 </script>
