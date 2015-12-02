@@ -1,23 +1,4 @@
-<style type="text/css">
-    .registeredStyles{
-        display: block;
-        clear: both;
-        list-style: none;
-        padding: 20px 0;
-        margin: 10px 0;
-        border: 1px solid #DDD;
-        border-left: 0;
-        border-right: 0;
-        width: 80%;
-    }
-    .registeredStyles li{
-        display: inline-block;
-        width: 25%;
-        height: 20px;
-        overflow: hidden;
-    }
-</style>
-
+<!--
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -46,6 +27,7 @@
         </div>
     </div>
 </div>
+-->
 
 <div class="container">
     <div class="row">
@@ -63,7 +45,13 @@
                 <h2>Styles</h2>
                 <ul class="list-group row" id="sortableStyles">
                     {{#styles}}
-                        <li class="list-group-item col-md-4 draggable">{{properties.labelText}}</li>
+                        <li class="list-group-item col-md-4 icon-container">
+                            <span class="ui-icon ui-icon-arrow-4-diag">&nbsp;</span>
+                            <input type="text" readonly value="00" class="styleIndex" name="styleIndex" />
+                            <label class="styleTitle">{{properties.labelText}}</label>
+                            <input type="hidden" class="styleHandler" value="{{properties.labelText}}" />
+                            <input type="text" name="styleTag" value="{{properties.labelText}}" class="styleTag" />
+                        </li>
                     {{/styles}}
                 </ul>
             {{/welcome}}
@@ -74,38 +62,44 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery('#toggleSelection').click(function(e){
-            e.prevenDefault = true;
-
-            var check = (jQuery(this).text() == 'Select All');
-
-            if(check){
-                jQuery('ul.registeredStyles input[type=checkbox]').attr('checked', 'checked');
-                jQuery(this).text('Deselect All');
-            } else {
-                jQuery('ul.registeredStyles input[type=checkbox]').removeAttr('checked');
-                jQuery(this).text('Select All');
-            }
-
-            activateSortableList();
-
+//        jQuery('#toggleSelection').click(function(e){
+//            e.prevenDefault = true;
+//
+//            var check = (jQuery(this).text() == 'Select All');
+//
+//            if(check){
+//                jQuery('ul.registeredStyles input[type=checkbox]').attr('checked', 'checked');
+//                jQuery(this).text('Deselect All');
+//            } else {
+//                jQuery('ul.registeredStyles input[type=checkbox]').removeAttr('checked');
+//                jQuery(this).text('Select All');
+//            }
+//
+//        });
+        console.log( 'Activating Sortable List' );
+        jQuery('label.styleTitle').click(function(){
+            var parent = jQuery(this).parents('li').eq(0);
+            jQuery(this).hide();
+            jQuery(parent).find('input.styleTag').show().focus();
         });
-
+        jQuery('input.styleTag').keyup(function(e){
+            if( e.which == 13 ){
+                e.preventDefault = true;
+                var parent = jQuery(this).parents('li').eq(0);
+                var label = jQuery(parent).find('label.styleTitle');
+                label.text( jQuery(this).val() );
+                jQuery(this).hide();
+                jQuery(label).show();
+            }
+        });
+        activateSortableList();
     });
 
     function activateSortableList()
     {
-        jQuery(function() {
-            jQuery( "#sortableStyles" ).sortable({
-                revert: true
-            });
-            jQuery( "li.draggable" ).draggable({
-                connectToSortable: "#sortableStyles",
-                helper: "clone",
-                revert: "invalid"
-            });
-            jQuery( "ul, li" ).disableSelection();
-        });
+        var list = jQuery('#sortableStyles');
+        jQuery(list).sortable();
+        jQuery(list).disableSelection();
     }
 
 </script>

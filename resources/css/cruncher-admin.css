@@ -1,0 +1,47 @@
+div#wpwrap{
+   background-color: rgb(250,250,255);
+   overflow: hidden;
+   padding: 0px 0 60px;
+}
+
+/*
+#sortableStyles { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortableStyles li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px;
+*/
+ul#sortableStyles li { overflow: hidden; }
+ul#sortableStyles li span,
+ul#sortableStyles li input[type=text],
+ul#sortableStyles li label
+{ float: left; }
+
+ul.registeredStyles{
+   display: block;
+   clear: both;
+   list-style: none;
+   padding: 20px 0;
+   margin: 10px 0;
+   border: 1px solid #DDD;
+   border-left: 0;
+   border-right: 0;
+   width: 80%;
+}
+ul.registeredStyles li{
+   display: inline-block;
+   width: 25%;
+   height: 20px;
+   overflow: hidden;
+}
+
+
+input.styleIndex{
+   background-color: transparent;
+   border: none;
+   width: 30px;
+}
+
+input.styleTag{
+   display: none;
+   width: 70%;
+   float: left;
+}
+

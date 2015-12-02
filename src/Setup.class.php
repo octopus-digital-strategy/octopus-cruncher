@@ -23,8 +23,8 @@ class Setup
     {
         // Load scripts for the front end
         if( is_admin() ){
-            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
             add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
+            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
         }
         return $this;
     }
@@ -45,6 +45,16 @@ class Setup
     // Static methods
     public static function enqueueStyles()
     {
+        // jQuery UI
+        if( $jQueryUI = self::getResourceURL( 'jquery-ui.css', 'bower_components/jquery-ui/themes/vader' ) ){
+            wp_enqueue_style( 'jquery-ui-css', $jQueryUI );
+        }
+
+        // Cruncher Admin
+        if( $adminStyles = self::getResourceURL( 'cruncher-admin.css' ) ){
+            wp_enqueue_style( 'octopus-cruncher-css', $adminStyles );
+        }
+
         // Bootstrap
         if( $bootstrap = self::getResourceURL( 'bootstrap.min.css', 'bower_components/bootstrap/dist/css' ) ){
             wp_enqueue_style( 'bootstrap-css', $bootstrap );
