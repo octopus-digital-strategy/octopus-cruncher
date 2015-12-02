@@ -59,7 +59,7 @@ class Setup
     {
         // Bootstrap
         if( $bootstrap = self::getResourceURL( 'bootstrap.min.js', 'bower_components/bootstrap/dist/js' ) ){
-            wp_enqueue_script( 'bootstrap-js', $bootstrap, array( 'jquery' ) );
+            wp_enqueue_script( 'bootstrap-js', $bootstrap, array( 'jquery', 'jquery-ui' ) );
         }
     }
 

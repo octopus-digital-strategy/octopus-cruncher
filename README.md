@@ -16,7 +16,8 @@ A WordPress plugin to compress all CSS into a single bundle.
 
 ###Version 0.3
 
-* Implementing Draggable / Sortable functionality for styles 
+* Implementing Draggable / Sortable functionality for styles
+* Added jQuery UI as a dependency
 * Added the new Welcome Window
 * Registered boostrap styles and scripts
 * Added bootstrap to the bower_components directory
