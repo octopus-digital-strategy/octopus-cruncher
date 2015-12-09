@@ -16,6 +16,8 @@ A WordPress plugin to compress all CSS into a single bundle.
 
 ###Version 0.3
 
+* Moved methods from OptionsPage to StylesManager
+* Added StylesManager class
 * Implemented Editable Labels
 * Added JQuery UI Styles
 * Implemented octopus Cruncher Admin Styles

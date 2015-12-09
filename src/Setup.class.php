@@ -8,7 +8,7 @@
 namespace OctopusCruncher;
 
 
-use OctopusCruncher\OptionsPage;
+use OctopusCruncher\UI\OptionsPage;
 
 
 class Setup
@@ -22,10 +22,8 @@ class Setup
     public function registerStylesAndScripts()
     {
         // Load scripts for the front end
-        if( is_admin() ){
-            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
-            add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
-        }
+        add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueScripts' ) );
+        add_filter( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueStyles' ) );
         return $this;
     }
 
@@ -45,31 +43,41 @@ class Setup
     // Static methods
     public static function enqueueStyles()
     {
-        // jQuery UI
-        if( $jQueryUI = self::getResourceURL( 'jquery-ui.css', 'bower_components/jquery-ui/themes/vader' ) ){
-            wp_enqueue_style( 'jquery-ui-css', $jQueryUI );
-        }
+        if( is_admin() ){
+            // jQuery UI
+            if( $jQueryUI = self::getResourceURL( 'jquery-ui.css', 'bower_components/jquery-ui/themes/vader' ) ){
+                wp_enqueue_style( 'jquery-ui-css', $jQueryUI );
+            }
+            // Cruncher Admin
+            if( $adminStyles = self::getResourceURL( 'cruncher-admin.css' ) ){
+                wp_enqueue_style( 'octopus-cruncher-css', $adminStyles );
+            }
+            // Bootstrap
+            if( $bootstrap = self::getResourceURL( 'bootstrap.min.css', 'bower_components/bootstrap/dist/css' ) ){
+                wp_enqueue_style( 'bootstrap-css', $bootstrap );
+            }
+            // Bootstrap Theme
+            if( $bootstrapTheme = self::getResourceURL( 'bootstrap-theme.min.css', 'bower_components/bootstrap/dist/css' ) ){
+                wp_enqueue_style( 'bootstrap-theme-css', $bootstrapTheme );
+            }
+        } else {
 
-        // Cruncher Admin
-        if( $adminStyles = self::getResourceURL( 'cruncher-admin.css' ) ){
-            wp_enqueue_style( 'octopus-cruncher-css', $adminStyles );
-        }
-
-        // Bootstrap
-        if( $bootstrap = self::getResourceURL( 'bootstrap.min.css', 'bower_components/bootstrap/dist/css' ) ){
-            wp_enqueue_style( 'bootstrap-css', $bootstrap );
-        }
-        // Bootstrap Theme
-        if( $bootstrapTheme = self::getResourceURL( 'bootstrap-theme.min.css', 'bower_components/bootstrap/dist/css' ) ){
-            wp_enqueue_style( 'bootstrap-theme-css', $bootstrapTheme );
         }
     }
 
     public static function enqueueScripts()
     {
-        // Bootstrap
-        if( $bootstrap = self::getResourceURL( 'bootstrap.min.js', 'bower_components/bootstrap/dist/js' ) ){
-            wp_enqueue_script( 'bootstrap-js', $bootstrap, array( 'jquery', 'jquery-ui' ) );
+        if( is_admin() ){
+            // Cruncher Admin
+            if( $cruncher = self::getResourceURL( 'cruncher-admin.js', 'javascript' ) ){
+                wp_enqueue_script( 'octopus-cruncher-js', $cruncher, array( 'jquery' ), false, true );
+            }
+            // Bootstrap
+            if( $bootstrap = self::getResourceURL( 'bootstrap.min.js', 'bower_components/bootstrap/dist/js' ) ){
+                wp_enqueue_script( 'bootstrap-js', $bootstrap, array( 'jquery', 'jquery-ui' ) );
+            }
+        }else{
+
         }
     }
 
